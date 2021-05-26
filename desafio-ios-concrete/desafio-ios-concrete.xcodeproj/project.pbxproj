@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AEA1DF4CBE561096908A800 /* Pods_desafio_ios_concrete.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9128A93B9A3AAEFBE01B2568 /* Pods_desafio_ios_concrete.framework */; };
 		BC54C70B265C7991002DCB89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54C70A265C7991002DCB89 /* AppDelegate.swift */; };
 		BC54C70D265C7991002DCB89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC54C70C265C7991002DCB89 /* SceneDelegate.swift */; };
 		BC54C712265C7991002DCB89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC54C710265C7991002DCB89 /* Main.storyboard */; };
@@ -27,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56400F57D75191202EF98D85 /* Pods-desafio-ios-concrete.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desafio-ios-concrete.debug.xcconfig"; path = "Target Support Files/Pods-desafio-ios-concrete/Pods-desafio-ios-concrete.debug.xcconfig"; sourceTree = "<group>"; };
+		9128A93B9A3AAEFBE01B2568 /* Pods_desafio_ios_concrete.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_desafio_ios_concrete.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1DF110AB85E654CCF33D224 /* Pods-desafio-ios-concrete.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-desafio-ios-concrete.release.xcconfig"; path = "Target Support Files/Pods-desafio-ios-concrete/Pods-desafio-ios-concrete.release.xcconfig"; sourceTree = "<group>"; };
 		BC54C707265C7991002DCB89 /* desafio-ios-concrete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "desafio-ios-concrete.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC54C70A265C7991002DCB89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC54C70C265C7991002DCB89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,17 +57,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEA1DF4CBE561096908A800 /* Pods_desafio_ios_concrete.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		335937B67FEDC6C9002675EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9128A93B9A3AAEFBE01B2568 /* Pods_desafio_ios_concrete.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4CB11BE5C3FBDFD3EED1D9D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56400F57D75191202EF98D85 /* Pods-desafio-ios-concrete.debug.xcconfig */,
+				B1DF110AB85E654CCF33D224 /* Pods-desafio-ios-concrete.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BC54C6FE265C7991002DCB89 = {
 			isa = PBXGroup;
 			children = (
 				BC54C709265C7991002DCB89 /* desafio-ios-concrete */,
 				BC54C708265C7991002DCB89 /* Products */,
+				4CB11BE5C3FBDFD3EED1D9D9 /* Pods */,
+				335937B67FEDC6C9002675EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,9 +148,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC54C71E265C7993002DCB89 /* Build configuration list for PBXNativeTarget "desafio-ios-concrete" */;
 			buildPhases = (
+				EAC52CCDBE6B0891E7B7E809 /* [CP] Check Pods Manifest.lock */,
 				BC54C703265C7991002DCB89 /* Sources */,
 				BC54C704265C7991002DCB89 /* Frameworks */,
 				BC54C705265C7991002DCB89 /* Resources */,
+				4084CB959C2CA190670C8F92 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -184,6 +211,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4084CB959C2CA190670C8F92 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-desafio-ios-concrete/Pods-desafio-ios-concrete-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-desafio-ios-concrete/Pods-desafio-ios-concrete-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-desafio-ios-concrete/Pods-desafio-ios-concrete-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAC52CCDBE6B0891E7B7E809 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-desafio-ios-concrete-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BC54C703265C7991002DCB89 /* Sources */ = {
@@ -343,6 +412,7 @@
 		};
 		BC54C71F265C7993002DCB89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56400F57D75191202EF98D85 /* Pods-desafio-ios-concrete.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -362,6 +432,7 @@
 		};
 		BC54C720265C7993002DCB89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1DF110AB85E654CCF33D224 /* Pods-desafio-ios-concrete.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
