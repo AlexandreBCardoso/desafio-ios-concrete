@@ -41,6 +41,8 @@ class MoviesViewController: UIViewController {
 		moviesCollectionView.delegate = self
 		moviesCollectionView.register(MoviesCollectionCell.nib(),
 												forCellWithReuseIdentifier: MoviesCollectionCell.identifier)
+		moviesCollectionView.register(ErrorMovieCollectionViewCell.nib(),
+												forCellWithReuseIdentifier: ErrorMovieCollectionViewCell.identifier)
 	}
 	
 }
