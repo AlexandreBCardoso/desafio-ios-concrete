@@ -9,6 +9,11 @@ import UIKit
 
 class MoviesCollectionCell: UICollectionViewCell {
 	
+	// MARK: - IBOutlet
+	@IBOutlet weak var movieImageView: UIImageView!
+	@IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var favoriteButton: UIImageView!
+	
 	// MARK: - Variable
 	static let identifier: String = "MoviesCollectionCell"
 	

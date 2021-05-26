@@ -38,7 +38,7 @@ class MoviesViewController: UIViewController {
 	
 	private func setupCollectionView() {
 		moviesCollectionView.dataSource = self
-
+		moviesCollectionView.delegate = self
 		moviesCollectionView.register(MoviesCollectionCell.nib(),
 												forCellWithReuseIdentifier: MoviesCollectionCell.identifier)
 	}
@@ -47,7 +47,7 @@ class MoviesViewController: UIViewController {
 
 
 // MARK: - Extension CollectionView
-extension MoviesViewController: UICollectionViewDataSource {
+extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 40
@@ -60,5 +60,22 @@ extension MoviesViewController: UICollectionViewDataSource {
 		return cell ?? UICollectionViewCell()
 	}
 	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: (view.frame.size.width/2-15),
+						  height: (view.frame.size.width/1.7))
+	}
 	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+		return 10
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+		return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print("Selecionado: \(indexPath.row)")
+		performSegue(withIdentifier: "movieDetail", sender: nil)
+	}
+		
 }

@@ -18,6 +18,7 @@
 		BC54C72D265C8333002DCB89 /* Favorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC54C72C265C8333002DCB89 /* Favorites.storyboard */; };
 		BCD17450265C8F15004E2ECA /* MoviesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD1744E265C8F15004E2ECA /* MoviesCollectionCell.swift */; };
 		BCD17451265C8F15004E2ECA /* MoviesCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCD1744F265C8F15004E2ECA /* MoviesCollectionCell.xib */; };
+		BCDB2261265DC4DC00A00D00 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BC54C72C265C8333002DCB89 /* Favorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favorites.storyboard; sourceTree = "<group>"; };
 		BCD1744E265C8F15004E2ECA /* MoviesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionCell.swift; sourceTree = "<group>"; };
 		BCD1744F265C8F15004E2ECA /* MoviesCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesCollectionCell.xib; sourceTree = "<group>"; };
+		BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				BC54C70C265C7991002DCB89 /* SceneDelegate.swift */,
 				BC54C710265C7991002DCB89 /* Main.storyboard */,
 				BC54C730265C8D69002DCB89 /* Movies */,
+				BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */,
 				BC54C72C265C8333002DCB89 /* Favorites.storyboard */,
 				BC54C716265C7993002DCB89 /* Assets.xcassets */,
 				BC54C718265C7993002DCB89 /* LaunchScreen.storyboard */,
@@ -175,6 +178,7 @@
 				BC54C70B265C7991002DCB89 /* AppDelegate.swift in Sources */,
 				BC54C70D265C7991002DCB89 /* SceneDelegate.swift in Sources */,
 				BC54C725265C7A13002DCB89 /* MoviesViewController.swift in Sources */,
+				BCDB2261265DC4DC00A00D00 /* MovieDetailViewController.swift in Sources */,
 				BCD17450265C8F15004E2ECA /* MoviesCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
