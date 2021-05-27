@@ -29,6 +29,7 @@ class MoviesViewController: UIViewController {
 		
 		setupSearchController()
 		setupCollectionView()
+		fetchGenres()
 		fetchMovies()
 	}
 	
@@ -67,6 +68,10 @@ class MoviesViewController: UIViewController {
 		viewModel.getMoviesPopular()
 	}
 	
+	private func fetchGenres() {
+		viewModel.getListGenres()
+	}
+	
 }
 
 
@@ -81,6 +86,7 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 		let movie = viewModel.getMovie(indexPath: indexPath)
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviesCollectionCell.identifier,
 																	 for: indexPath) as? MoviesCollectionCell
+		viewModel.fillGenreName(indexPath: indexPath)
 		cell?.setupCell(model: movie)
 		
 		return cell ?? UICollectionViewCell()

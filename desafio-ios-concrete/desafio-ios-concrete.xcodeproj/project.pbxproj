@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		BCCC0CB9265F028400A0E3EA /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCC0CB8265F028400A0E3EA /* MovieViewModel.swift */; };
 		BCCC0CBC265F063B00A0E3EA /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCC0CBB265F063B00A0E3EA /* MovieModel.swift */; };
 		BCCC0CC0265F110900A0E3EA /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCC0CBF265F110900A0E3EA /* Network.swift */; };
+		BCCC0CC9265F326300A0E3EA /* GenreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCC0CC8265F326300A0E3EA /* GenreModel.swift */; };
 		BCD17450265C8F15004E2ECA /* MoviesCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD1744E265C8F15004E2ECA /* MoviesCollectionCell.swift */; };
 		BCD17451265C8F15004E2ECA /* MoviesCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCD1744F265C8F15004E2ECA /* MoviesCollectionCell.xib */; };
 		BCDB2261265DC4DC00A00D00 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */; };
@@ -45,6 +46,7 @@
 		BCCC0CB8265F028400A0E3EA /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		BCCC0CBB265F063B00A0E3EA /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
 		BCCC0CBF265F110900A0E3EA /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		BCCC0CC8265F326300A0E3EA /* GenreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreModel.swift; sourceTree = "<group>"; };
 		BCD1744E265C8F15004E2ECA /* MoviesCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCollectionCell.swift; sourceTree = "<group>"; };
 		BCD1744F265C8F15004E2ECA /* MoviesCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesCollectionCell.xib; sourceTree = "<group>"; };
 		BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 				56400F57D75191202EF98D85 /* Pods-desafio-ios-concrete.debug.xcconfig */,
 				B1DF110AB85E654CCF33D224 /* Pods-desafio-ios-concrete.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -106,8 +107,8 @@
 				BC54C70A265C7991002DCB89 /* AppDelegate.swift */,
 				BC54C70C265C7991002DCB89 /* SceneDelegate.swift */,
 				BC54C710265C7991002DCB89 /* Main.storyboard */,
-				BCCC0CBB265F063B00A0E3EA /* MovieModel.swift */,
-				BCCC0CBF265F110900A0E3EA /* Network.swift */,
+				BCCC0CCB265F326E00A0E3EA /* Model */,
+				BCCC0CCD265F350F00A0E3EA /* Network */,
 				BC54C730265C8D69002DCB89 /* Movies */,
 				BCDB2260265DC4DC00A00D00 /* MovieDetailViewController.swift */,
 				BC54C72C265C8333002DCB89 /* Favorites.storyboard */,
@@ -128,6 +129,23 @@
 				BCD17453265C8F31004E2ECA /* CustomCell */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		BCCC0CCB265F326E00A0E3EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BCCC0CBB265F063B00A0E3EA /* MovieModel.swift */,
+				BCCC0CC8265F326300A0E3EA /* GenreModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BCCC0CCD265F350F00A0E3EA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BCCC0CBF265F110900A0E3EA /* Network.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		BCD17453265C8F31004E2ECA /* CustomCell */ = {
@@ -263,6 +281,7 @@
 				BCCC0CBC265F063B00A0E3EA /* MovieModel.swift in Sources */,
 				BC54C715265C7991002DCB89 /* desafio_ios_concrete.xcdatamodeld in Sources */,
 				BC54C70B265C7991002DCB89 /* AppDelegate.swift in Sources */,
+				BCCC0CC9265F326300A0E3EA /* GenreModel.swift in Sources */,
 				BCDB2266265DD1F700A00D00 /* ErrorMovieCollectionViewCell.swift in Sources */,
 				BCCC0CB9265F028400A0E3EA /* MovieViewModel.swift in Sources */,
 				BC54C70D265C7991002DCB89 /* SceneDelegate.swift in Sources */,

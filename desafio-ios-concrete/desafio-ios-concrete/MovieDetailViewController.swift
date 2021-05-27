@@ -63,12 +63,12 @@ class MovieDetailViewController: UIViewController {
 			? UIImage(named: "favorite_full_icon")
 			: UIImage(named: "favorite_gray_icon")
 		
-		movieImageView.image = imageMovie(url: movieModel?.poster_url)
-		nameLabel.text = movieModel?.title
-		yearLabel.text = movieModel?.release
-		genreLabel.text = "\(String(describing: movieModel?.genres.first))"
-		descriptionLabel.text = movieModel?.summary
-		favoriteImageView.image = favoriteModel
+		movieImageView.image		= imageMovie(url: movieModel?.poster_url)
+		nameLabel.text 			= movieModel?.title
+		yearLabel.text 			= movieModel?.release_year
+		genreLabel.text 			= movieModel?.genres_description
+		descriptionLabel.text 	= movieModel?.summary
+		favoriteImageView.image	= favoriteModel
 	}
 	
 	private func imageMovie(url: URL?) -> UIImage? {
