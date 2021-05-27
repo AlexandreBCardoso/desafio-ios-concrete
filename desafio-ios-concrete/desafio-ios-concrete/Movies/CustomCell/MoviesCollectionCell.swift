@@ -29,4 +29,23 @@ class MoviesCollectionCell: UICollectionViewCell {
 		return UINib(nibName: identifier, bundle: nil)
 	}
 	
+	func setupCell(model: Movie?) {
+		let favoriteModel = (model?.isFavorite ?? false) ? UIImage(named: "favorite_full_icon")
+			: UIImage(named: "favorite_gray_icon")
+		nameLabel.text = model?.title
+		favoriteButton.image = favoriteModel
+		movieImageView.image = imageMovie(url: model?.poster_url)
+	}
+	
+	private func imageMovie(url: URL?) -> UIImage? {
+		guard let _url = url else { return nil }
+		
+		do {
+			let imageData = try Data(contentsOf: _url)
+			return UIImage(data: imageData)
+		} catch  {
+			return nil
+		}
+	}
+	
 }

@@ -20,31 +20,35 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="air-Ms-Ola">
                         <rect key="frame" x="0.0" y="0.0" width="170" height="210"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-5d-tTj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLE-5d-tTj">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="174"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-jh-oK0">
-                                <rect key="frame" x="0.0" y="174" width="170" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-jh-oK0">
+                                <rect key="frame" x="5" y="174" width="133" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="mainColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite_gray_icon" translatesAutoresizingMaskIntoConstraints="NO" id="a4K-u7-vJS">
-                                <rect key="frame" x="138" y="184" width="17" height="16"/>
+                                <rect key="frame" x="143" y="184" width="17" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="17" id="8KK-Gm-aa5"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" name="backColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="hc7-jh-oK0" secondAttribute="bottom" id="6fK-Ad-G0X"/>
+                            <constraint firstItem="a4K-u7-vJS" firstAttribute="leading" secondItem="hc7-jh-oK0" secondAttribute="trailing" constant="5" id="9VL-1p-6CF"/>
                             <constraint firstAttribute="bottom" secondItem="a4K-u7-vJS" secondAttribute="bottom" constant="10" id="HYl-ak-IPL"/>
                             <constraint firstItem="eLE-5d-tTj" firstAttribute="top" secondItem="air-Ms-Ola" secondAttribute="top" id="Huw-5f-aCj"/>
                             <constraint firstItem="a4K-u7-vJS" firstAttribute="top" secondItem="eLE-5d-tTj" secondAttribute="bottom" constant="10" id="KP6-pF-qbz"/>
-                            <constraint firstItem="hc7-jh-oK0" firstAttribute="leading" secondItem="air-Ms-Ola" secondAttribute="leading" id="QOs-j4-ihd"/>
+                            <constraint firstItem="hc7-jh-oK0" firstAttribute="leading" secondItem="air-Ms-Ola" secondAttribute="leading" constant="5" id="QOs-j4-ihd"/>
                             <constraint firstAttribute="trailing" secondItem="eLE-5d-tTj" secondAttribute="trailing" id="Zgh-Mf-hCd"/>
+                            <constraint firstItem="eLE-5d-tTj" firstAttribute="height" secondItem="air-Ms-Ola" secondAttribute="height" multiplier="0.828571" id="aeo-ac-65g"/>
                             <constraint firstItem="hc7-jh-oK0" firstAttribute="top" secondItem="eLE-5d-tTj" secondAttribute="bottom" id="ndH-Pr-jMJ"/>
                             <constraint firstItem="eLE-5d-tTj" firstAttribute="leading" secondItem="air-Ms-Ola" secondAttribute="leading" id="rie-DU-kHu"/>
-                            <constraint firstAttribute="trailing" secondItem="hc7-jh-oK0" secondAttribute="trailing" id="wTy-xG-sxm"/>
-                            <constraint firstAttribute="trailing" secondItem="a4K-u7-vJS" secondAttribute="trailing" constant="15" id="zfR-oF-CNg"/>
+                            <constraint firstAttribute="trailing" secondItem="a4K-u7-vJS" secondAttribute="trailing" constant="10" id="zfR-oF-CNg"/>
                         </constraints>
                     </view>
                 </subviews>

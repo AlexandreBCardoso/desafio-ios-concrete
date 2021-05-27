@@ -19,6 +19,8 @@ class MoviesViewController: UIViewController {
 		search.searchBar.placeholder = "Search"
 		return search
 	}()
+	private let viewModel: MovieViewModel = MovieViewModel()
+	private var selectItem: Int = 0
 	
 	
 	// MARK: - Life Cycle
@@ -27,6 +29,21 @@ class MoviesViewController: UIViewController {
 		
 		setupSearchController()
 		setupCollectionView()
+		fetchMovies()
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		tabBarController?.tabBar.isHidden = false
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "movieDetail" {
+			if let vc = segue.destination as? MovieDetailViewController {
+				vc.movieModel = sender as? Movie
+				vc.delegate = self
+			}
+		}
 	}
 	
 	
@@ -45,6 +62,11 @@ class MoviesViewController: UIViewController {
 												forCellWithReuseIdentifier: ErrorMovieCollectionViewCell.identifier)
 	}
 	
+	private func fetchMovies() {
+		viewModel.delegate = self
+		viewModel.getMoviesPopular()
+	}
+	
 }
 
 
@@ -52,12 +74,14 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return 40
+		return viewModel.countMovies
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let movie = viewModel.getMovie(indexPath: indexPath)
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviesCollectionCell.identifier,
 																	 for: indexPath) as? MoviesCollectionCell
+		cell?.setupCell(model: movie)
 		
 		return cell ?? UICollectionViewCell()
 	}
@@ -76,8 +100,37 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		print("Selecionado: \(indexPath.row)")
-		performSegue(withIdentifier: "movieDetail", sender: nil)
+		let movie = viewModel.getMovie(indexPath: indexPath)
+		selectItem = indexPath.row
+		performSegue(withIdentifier: "movieDetail", sender: movie)
 	}
 		
+}
+
+
+// MARK: - Extension MovieViewModel
+extension MoviesViewController: MovieViewModelProtocol {
+	
+	func successNetwork() {
+		print("==>> Sucesso API")
+		DispatchQueue.main.async {
+			self.moviesCollectionView.reloadData()
+		}
+	}
+	
+	func errorNetwork() {
+		print("==>> Erro API")
+	}
+	
+}
+
+
+// MARK: - Extension MovieDetail
+extension MoviesViewController: MovieDetailViewControllerProtocol {
+	
+	func updateModel(_ model: Movie?) {
+		viewModel.updateFavorite(row: selectItem, isFavorite: model?.isFavorite ?? false)
+		moviesCollectionView.reloadData()
+	}
+	
 }

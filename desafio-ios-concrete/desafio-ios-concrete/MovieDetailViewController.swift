@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MovieDetailViewControllerProtocol: class {
+	func updateModel(_ model: Movie?)
+}
+
 class MovieDetailViewController: UIViewController {
 	
 	// MARK: - IBOutlet
@@ -17,13 +21,23 @@ class MovieDetailViewController: UIViewController {
 	@IBOutlet weak var descriptionLabel: UILabel!
 	@IBOutlet weak var favoriteImageView: UIImageView!
 	
+	// MARK: - Variable
+	var movieModel: Movie?
+	weak var delegate: MovieDetailViewControllerProtocol?
+	
 	
 	// MARK: - Life cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tabBarController?.tabBar.isHidden = true
+		setupMovieDetail()
 		setupFavorite()
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		delegate?.updateModel(movieModel)
 	}
 	
 	
@@ -36,9 +50,36 @@ class MovieDetailViewController: UIViewController {
 	
 	@objc
 	func favoriteAction(_ sender: UIGestureRecognizer) {
-		print(#function)
-		print("Tapped")
-		favoriteImageView.image = UIImage(named: "favorite_full_icon")
+		let favorite: Bool = !(movieModel?.isFavorite ?? false)
+		movieModel?.isFavorite = favorite
+		
+		favoriteImageView.image = favorite
+			? UIImage(named: "favorite_full_icon")
+			: UIImage(named: "favorite_gray_icon")
+	}
+	
+	private func setupMovieDetail() {
+		let favoriteModel = (movieModel?.isFavorite ?? false)
+			? UIImage(named: "favorite_full_icon")
+			: UIImage(named: "favorite_gray_icon")
+		
+		movieImageView.image = imageMovie(url: movieModel?.poster_url)
+		nameLabel.text = movieModel?.title
+		yearLabel.text = movieModel?.release
+		genreLabel.text = "\(String(describing: movieModel?.genres.first))"
+		descriptionLabel.text = movieModel?.summary
+		favoriteImageView.image = favoriteModel
+	}
+	
+	private func imageMovie(url: URL?) -> UIImage? {
+		guard let _url = url else { return nil }
+		
+		do {
+			let imageData = try Data(contentsOf: _url)
+			return UIImage(data: imageData)
+		} catch  {
+			return nil
+		}
 	}
 	
 }
