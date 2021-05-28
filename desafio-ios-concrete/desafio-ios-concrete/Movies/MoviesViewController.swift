@@ -22,6 +22,15 @@ class MoviesViewController: UIViewController {
 	private let viewModel: MovieViewModel = MovieViewModel()
 	private var selectItem: Int = 0
 	
+	var isSearchBarEmpty: Bool {
+	  return searchController.searchBar.text?.isEmpty ?? true
+	}
+
+	var isFiltering: Bool {
+	  return searchController.isActive && !isSearchBarEmpty
+	}
+
+	
 	
 	// MARK: - Life Cycle
 	override func viewDidLoad() {
@@ -52,6 +61,10 @@ class MoviesViewController: UIViewController {
 	private func setupSearchController() {
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
+		searchController.searchResultsUpdater = self
+		searchController.obscuresBackgroundDuringPresentation = false
+		definesPresentationContext = true
+		
 	}
 	
 	private func setupCollectionView() {
@@ -61,6 +74,8 @@ class MoviesViewController: UIViewController {
 												forCellWithReuseIdentifier: MoviesCollectionCell.identifier)
 		moviesCollectionView.register(ErrorMovieCollectionViewCell.nib(),
 												forCellWithReuseIdentifier: ErrorMovieCollectionViewCell.identifier)
+		moviesCollectionView.register(NotFoundCollectionViewCell.nib(),
+												forCellWithReuseIdentifier: NotFoundCollectionViewCell.identifier)
 	}
 	
 	private func fetchMovies() {
@@ -79,10 +94,18 @@ class MoviesViewController: UIViewController {
 extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return viewModel.countMovies
+		return viewModel.countMovies()
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		
+		if viewModel.checkNotFound() {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotFoundCollectionViewCell.identifier,
+																		 for: indexPath) as? NotFoundCollectionViewCell
+			cell?.setupCell(text: searchController.searchBar.text ?? "")
+			return cell ?? UICollectionViewCell()
+		}
+		
 		let movie = viewModel.getMovie(indexPath: indexPath)
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviesCollectionCell.identifier,
 																	 for: indexPath) as? MoviesCollectionCell
@@ -93,7 +116,12 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: (view.frame.size.width/2-15),
+		
+		if viewModel.checkNotFound() {
+			return CGSize(width: view.frame.size.width-20, height: view.frame.size.width)
+		}
+		
+		return CGSize(width: (view.frame.size.width/2)-15,
 						  height: (view.frame.size.width/1.7))
 	}
 	
@@ -138,5 +166,25 @@ extension MoviesViewController: MovieDetailViewControllerProtocol {
 		viewModel.updateFavorite(row: selectItem, isFavorite: model?.isFavorite ?? false)
 		moviesCollectionView.reloadData()
 	}
+	
+}
+
+
+// MARK: - Extension SearchController
+extension MoviesViewController: UISearchResultsUpdating {
+	
+	func updateSearchResults(for searchController: UISearchController) {
+		print("Search Active: \(searchController.isActive)")
+		print("Texto: \(String(describing: searchController.searchBar.text))")
+		
+		if let text = searchController.searchBar.text {
+			viewModel.filterContentForSearchText(text, isFiltering: searchController.isActive)
+			moviesCollectionView.reloadData()
+		}
+		
+		
+		
+	}
+	
 	
 }

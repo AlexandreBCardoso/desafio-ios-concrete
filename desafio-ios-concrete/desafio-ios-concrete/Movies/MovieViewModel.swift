@@ -14,14 +14,17 @@ protocol MovieViewModelProtocol: class {
 
 class MovieViewModel {
 	
+	// MARK: - Variable
 	private var movies: Movies?
+	private var filteredMovies = [Movie]()
 	private var listGenre: Genres?
 	private let service: Network = Network()
+	private var isFiltering = false
+	private var isNotFound = false
 	weak var delegate: MovieViewModelProtocol?
-	var countMovies: Int {
-		return movies?.results.count ?? 0
-	}
 	
+	
+	// MARK: - Function
 	func getMoviesPopular() {
 		service.getMoviePopular { (movies) in
 			if movies != nil {
@@ -40,7 +43,26 @@ class MovieViewModel {
 	}
 	
 	func getMovie(indexPath: IndexPath) -> Movie? {
+		if isFiltering && !isNotFound{
+			return filteredMovies[indexPath.row]
+		}
 		return movies?.results[indexPath.row]
+	}
+	
+	func countMovies() -> Int {
+		if isFiltering {
+			if isNotFound {
+				return 1
+			} else {
+				return filteredMovies.count
+			}
+		} else {
+			return movies?.results.count ?? 0
+		}
+	}
+	
+	func checkNotFound() -> Bool {
+		return isNotFound
 	}
 	
 	func updateFavorite(row: Int, isFavorite: Bool) {
@@ -61,6 +83,36 @@ class MovieViewModel {
 				}
 			}
 			self.movies?.results[indexPath.row].genres_description = listName.joined(separator: ", ")
+		}
+		
+	}
+	
+	func filterContentForSearchText(_ searchText: String, isFiltering: Bool) {
+		if isFiltering && searchText != "" {
+			self.isFiltering = isFiltering
+			if let movies = movies?.results {
+				filteredMovies = movies.filter({ (movie) -> Bool in
+					return movie.title.lowercased().contains(searchText.lowercased())
+				})
+				
+				if filteredMovies.isEmpty {
+					print("Não encontrado")
+					isNotFound = true
+				}
+
+				
+			}
+		} else {
+			filteredMovies = []
+			self.isFiltering = isFiltering
+			isNotFound = false
+		}
+		
+		
+		for name in filteredMovies {
+			print("Qntd Filtrado: \(filteredMovies.count)")
+			print("Movies Filtrado: \(name.title)")
+			print("--------------------------------")
 		}
 		
 	}
