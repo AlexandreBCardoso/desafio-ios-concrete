@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:desafio-ios-concrete/Movies/MoviesCoreData+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:desafio-ios-concrete/Movies/MoviesCoreData+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
       location = "group:desafio-ios-concrete.xcodeproj">
    </FileRef>
    <FileRef
