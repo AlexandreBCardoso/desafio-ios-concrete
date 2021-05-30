@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MovieDetailViewControllerProtocol: class {
-	func updateModel(_ model: Movie?)
+	func updateModel(_ model: Movie)
 }
 
 class MovieDetailViewController: UIViewController {
@@ -37,7 +37,10 @@ class MovieDetailViewController: UIViewController {
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		delegate?.updateModel(movieModel)
+		
+		if let model = movieModel {
+			delegate?.updateModel(model)
+		}
 	}
 	
 	

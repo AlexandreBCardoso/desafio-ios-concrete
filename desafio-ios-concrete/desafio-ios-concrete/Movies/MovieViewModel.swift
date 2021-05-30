@@ -23,13 +23,42 @@ class MovieViewModel {
 	private var isNotFound = false
 	weak var delegate: MovieViewModelProtocol?
 	private let serviceCoreData: NetworkCoreData = NetworkCoreData()
+	private var listFavorite: [Movie] = [Movie]()
 	
 	
 	// MARK: - Function
+	func fetchFavorite() {
+		listFavorite = []
+		let list = serviceCoreData.fetchFavorite()
+		
+		if let listCoreData = list {
+			for favorite in listCoreData {
+				listFavorite.append(Movie(genres: [Int](),
+												  title: favorite.title ?? "",
+												  summary: favorite.summary ?? "",
+												  poster: favorite.poster ?? "",
+												  release: favorite.release_data ?? "",
+												  isFavorite: favorite.isFavorite,
+												  genres_description: favorite.genres_description ?? "")
+				)
+			}
+		}
+	}
+
 	func getMoviesPopular() {
 		service.getMoviePopular { (movies) in
-			if movies != nil {
-				self.movies = movies
+			
+			if let _movies = movies {
+				self.movies = _movies
+				
+				for favorite in self.listFavorite {
+					for (index, movie) in _movies.results.enumerated() {
+						if movie.title == favorite.title {
+							self.movies?.results[index].isFavorite = true
+						}
+					}
+				}
+				
 				self.delegate?.successNetwork()
 			} else {
 				self.delegate?.errorNetwork()
@@ -65,11 +94,7 @@ class MovieViewModel {
 	func checkNotFound() -> Bool {
 		return isNotFound
 	}
-	
-	func updateFavorite(row: Int, isFavorite: Bool) {
-		movies?.results[row].isFavorite = isFavorite
-	}
-	
+		
 	func fillGenreName(indexPath: IndexPath) {
 		var listName = [String]()
 		
@@ -97,10 +122,8 @@ class MovieViewModel {
 				})
 				
 				if filteredMovies.isEmpty {
-					print("Não encontrado")
 					isNotFound = true
 				}
-
 				
 			}
 		} else {
@@ -109,18 +132,15 @@ class MovieViewModel {
 			isNotFound = false
 		}
 		
-		
-		for name in filteredMovies {
-			print("Qntd Filtrado: \(filteredMovies.count)")
-			print("Movies Filtrado: \(name.title)")
-			print("--------------------------------")
-		}
-		
 	}
 	
-	func createFavorite(index: Int) {
+	func createFavorite(index: Int, model: Movie) {
 		if let movie = movies?.results[index] {
-			serviceCoreData.createFavorite(model: movie)
+			if model.isFavorite && !movie.isFavorite {
+				serviceCoreData.createFavorite(model: model)
+			} else if !model.isFavorite && movie.isFavorite {
+				serviceCoreData.deleteFavorite(model: model)
+			}
 		}
 	}
 	

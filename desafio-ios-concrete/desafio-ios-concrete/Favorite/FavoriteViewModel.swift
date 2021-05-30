@@ -16,7 +16,6 @@ class FavoriteViewModel {
 	
 	// MARK: - Function
 	func fetchFavorite() {
-		print(#function)
 		listFavorite = []
 		let list = service.fetchFavorite()
 		
@@ -29,17 +28,7 @@ class FavoriteViewModel {
 												  release: favorite.release_data ?? "",
 												  isFavorite: favorite.isFavorite,
 												  genres_description: favorite.genres_description ?? "")
-				)
-			
-				print("Criado Favorite------------")
-				print("Genres: \(String(describing: favorite.genres))")
-				print("Title: \(String(describing: favorite.title))")
-				print("Summary: \(String(describing: favorite.summary))")
-				print("Poster: \(String(describing: favorite.poster))")
-				print("Release: \(String(describing: favorite.release_data))")
-				print("is favorite: \(favorite.isFavorite)")
-				print("Description: \(String(describing: favorite.genres_description))")
-				
+				)				
 			}
 		}
 	}

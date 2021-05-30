@@ -30,12 +30,14 @@ class MoviesViewController: UIViewController {
 		setupSearchController()
 		setupCollectionView()
 		fetchGenres()
-		fetchMovies()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		tabBarController?.tabBar.isHidden = false
+		
+		fetchMovies()
+		moviesCollectionView.reloadData()
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,6 +73,7 @@ class MoviesViewController: UIViewController {
 	
 	private func fetchMovies() {
 		viewModel.delegate = self
+		viewModel.fetchFavorite()
 		viewModel.getMoviesPopular()
 	}
 	
@@ -137,7 +140,6 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 extension MoviesViewController: MovieViewModelProtocol {
 	
 	func successNetwork() {
-		print("==>> Sucesso API")
 		DispatchQueue.main.async {
 			self.moviesCollectionView.reloadData()
 		}
@@ -153,9 +155,8 @@ extension MoviesViewController: MovieViewModelProtocol {
 // MARK: - Extension MovieDetail
 extension MoviesViewController: MovieDetailViewControllerProtocol {
 	
-	func updateModel(_ model: Movie?) {
-		viewModel.updateFavorite(row: selectItem, isFavorite: model?.isFavorite ?? false)
-		viewModel.createFavorite(index: selectItem)
+	func updateModel(_ model: Movie) {
+		viewModel.createFavorite(index: selectItem, model: model)
 		moviesCollectionView.reloadData()
 	}
 	
@@ -166,17 +167,10 @@ extension MoviesViewController: MovieDetailViewControllerProtocol {
 extension MoviesViewController: UISearchResultsUpdating {
 	
 	func updateSearchResults(for searchController: UISearchController) {
-		print("Search Active: \(searchController.isActive)")
-		print("Texto: \(String(describing: searchController.searchBar.text))")
-		
 		if let text = searchController.searchBar.text {
 			viewModel.filterContentForSearchText(text, isFiltering: searchController.isActive)
 			moviesCollectionView.reloadData()
 		}
-		
-		
-		
 	}
-	
 	
 }
