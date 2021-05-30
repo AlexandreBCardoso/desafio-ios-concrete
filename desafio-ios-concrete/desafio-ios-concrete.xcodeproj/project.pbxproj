@@ -118,8 +118,6 @@
 		BC54C6FE265C7991002DCB89 = {
 			isa = PBXGroup;
 			children = (
-				BC659B1826641824002143A7 /* MovieData+CoreDataClass.swift */,
-				BC659B1926641824002143A7 /* MovieData+CoreDataProperties.swift */,
 				BC54C709265C7991002DCB89 /* desafio-ios-concrete */,
 				BC54C708265C7991002DCB89 /* Products */,
 				4CB11BE5C3FBDFD3EED1D9D9 /* Pods */,
@@ -178,6 +176,8 @@
 		BCCC0CCD265F350F00A0E3EA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				BC659B1826641824002143A7 /* MovieData+CoreDataClass.swift */,
+				BC659B1926641824002143A7 /* MovieData+CoreDataProperties.swift */,
 				BCCC0CBF265F110900A0E3EA /* NetworkAPI.swift */,
 				BCF4F1C62663E2BA00FA4376 /* NetworkCoreData.swift */,
 			);
