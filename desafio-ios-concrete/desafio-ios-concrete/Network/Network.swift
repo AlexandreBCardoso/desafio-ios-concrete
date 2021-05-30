@@ -8,17 +8,6 @@
 import Foundation
 import Alamofire
 
-enum Api_url: String {
-	case baseUrl 	= "https://api.themoviedb.org/3/"
-	case movie 		= "movie/"
-	case genre 		= "genre/"
-	case popular 	= "popular?"
-	case list      = "list?"
-	case apiKey 	= "api_key=f0ca6496aecedd1cfc6487c0d9849760"
-	case language 	= "language=en-US"
-	case page 		= "page=1"
-}
-
 class Network {
 	
 	func getMoviePopular(completion: @escaping(_ success: Movies?) -> Void) {

@@ -27,11 +27,12 @@ class NotFoundCollectionViewCell: UICollectionViewCell {
 		return UINib(nibName: identifier, bundle: nil)
 	}
 	
-	func setupCell(text: String) {
-		descriptionLabel.text =
-			"""
-			Sua busca por "\(text)", não resultou em nenhum resultado.
-			"""
+	func setupCell(text: String?) {
+		let descriptionError = ErrorDescription.notFound.rawValue
+		if let _text = text {
+			descriptionLabel.text = descriptionError.replacingOccurrences(of: "&1",
+																							  with: _text)
+		}
 	}
 	
 }

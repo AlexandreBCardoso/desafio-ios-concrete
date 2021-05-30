@@ -21,16 +21,7 @@ class MoviesViewController: UIViewController {
 	}()
 	private let viewModel: MovieViewModel = MovieViewModel()
 	private var selectItem: Int = 0
-	
-	var isSearchBarEmpty: Bool {
-	  return searchController.searchBar.text?.isEmpty ?? true
-	}
-
-	var isFiltering: Bool {
-	  return searchController.isActive && !isSearchBarEmpty
-	}
-
-	
+		
 	
 	// MARK: - Life Cycle
 	override func viewDidLoad() {
@@ -48,10 +39,10 @@ class MoviesViewController: UIViewController {
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "movieDetail" {
-			if let vc = segue.destination as? MovieDetailViewController {
-				vc.movieModel = sender as? Movie
-				vc.delegate = self
+		if segue.identifier == Segue.detail.rawValue {
+			if let vc = segue.destination as? MovieDetailViewController,
+				let movie = sender as? Movie {
+				vc.setupDetail(model: movie, delegate: self)
 			}
 		}
 	}
@@ -102,7 +93,7 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 		if viewModel.checkNotFound() {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotFoundCollectionViewCell.identifier,
 																		 for: indexPath) as? NotFoundCollectionViewCell
-			cell?.setupCell(text: searchController.searchBar.text ?? "")
+			cell?.setupCell(text: searchController.searchBar.text)
 			return cell ?? UICollectionViewCell()
 		}
 		
@@ -136,7 +127,7 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let movie = viewModel.getMovie(indexPath: indexPath)
 		selectItem = indexPath.row
-		performSegue(withIdentifier: "movieDetail", sender: movie)
+		performSegue(withIdentifier: Segue.detail.rawValue, sender: movie)
 	}
 		
 }

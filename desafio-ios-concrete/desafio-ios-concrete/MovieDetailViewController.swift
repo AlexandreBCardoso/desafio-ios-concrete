@@ -22,8 +22,8 @@ class MovieDetailViewController: UIViewController {
 	@IBOutlet weak var favoriteImageView: UIImageView!
 	
 	// MARK: - Variable
-	var movieModel: Movie?
-	weak var delegate: MovieDetailViewControllerProtocol?
+	private var movieModel: Movie?
+	private weak var delegate: MovieDetailViewControllerProtocol?
 	
 	
 	// MARK: - Life cycle
@@ -42,6 +42,11 @@ class MovieDetailViewController: UIViewController {
 	
 	
 	// MARK: - Function
+	func setupDetail(model: Movie, delegate: MovieDetailViewControllerProtocol?) {
+		self.movieModel = model
+		self.delegate = delegate
+	}
+	
 	private func setupFavorite() {
 		favoriteImageView.isUserInteractionEnabled = true
 		favoriteImageView.addGestureRecognizer(UITapGestureRecognizer(target: self,
@@ -54,14 +59,14 @@ class MovieDetailViewController: UIViewController {
 		movieModel?.isFavorite = favorite
 		
 		favoriteImageView.image = favorite
-			? UIImage(named: "favorite_full_icon")
-			: UIImage(named: "favorite_gray_icon")
+			? UIImage(named: NameImage.favorite.rawValue)
+			: UIImage(named: NameImage.unfavorite.rawValue)
 	}
 	
 	private func setupMovieDetail() {
 		let favoriteModel = (movieModel?.isFavorite ?? false)
-			? UIImage(named: "favorite_full_icon")
-			: UIImage(named: "favorite_gray_icon")
+			? UIImage(named: NameImage.favorite.rawValue)
+			: UIImage(named: NameImage.unfavorite.rawValue)
 		
 		movieImageView.image		= imageMovie(url: movieModel?.poster_url)
 		nameLabel.text 			= movieModel?.title

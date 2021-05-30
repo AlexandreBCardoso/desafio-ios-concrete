@@ -30,8 +30,9 @@ class MoviesCollectionCell: UICollectionViewCell {
 	}
 	
 	func setupCell(model: Movie?) {
-		let favoriteModel = (model?.isFavorite ?? false) ? UIImage(named: "favorite_full_icon")
-			: UIImage(named: "favorite_gray_icon")
+		let favoriteModel = (model?.isFavorite ?? false)
+			? UIImage(named: NameImage.favorite.rawValue)
+			: UIImage(named: NameImage.unfavorite.rawValue)
 		nameLabel.text = model?.title
 		favoriteButton.image = favoriteModel
 //		movieImageView.image = imageMovie(url: model?.poster_url)
