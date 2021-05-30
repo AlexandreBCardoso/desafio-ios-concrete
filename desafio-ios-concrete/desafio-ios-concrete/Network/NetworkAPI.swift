@@ -1,5 +1,5 @@
 //
-//  Network.swift
+//  NetworkAPI.swift
 //  desafio-ios-concrete
 //
 //  Created by Alexandre Cardoso on 26/05/21.
@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class Network {
+class NetworkAPI {
 	
 	func getMoviePopular(completion: @escaping(_ success: Movies?) -> Void) {
 		let urlString: String = Api_url.baseUrl.rawValue + Api_url.movie.rawValue + Api_url.popular.rawValue

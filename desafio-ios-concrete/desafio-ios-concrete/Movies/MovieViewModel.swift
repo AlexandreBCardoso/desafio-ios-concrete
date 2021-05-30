@@ -18,10 +18,11 @@ class MovieViewModel {
 	private var movies: Movies?
 	private var filteredMovies = [Movie]()
 	private var listGenre: Genres?
-	private let service: Network = Network()
+	private let service: NetworkAPI = NetworkAPI()
 	private var isFiltering = false
 	private var isNotFound = false
 	weak var delegate: MovieViewModelProtocol?
+	private let serviceCoreData: NetworkCoreData = NetworkCoreData()
 	
 	
 	// MARK: - Function
@@ -115,6 +116,12 @@ class MovieViewModel {
 			print("--------------------------------")
 		}
 		
+	}
+	
+	func createFavorite(index: Int) {
+		if let movie = movies?.results[index] {
+			serviceCoreData.createFavorite(model: movie)
+		}
 	}
 	
 }

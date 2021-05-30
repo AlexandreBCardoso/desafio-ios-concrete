@@ -155,6 +155,7 @@ extension MoviesViewController: MovieDetailViewControllerProtocol {
 	
 	func updateModel(_ model: Movie?) {
 		viewModel.updateFavorite(row: selectItem, isFavorite: model?.isFavorite ?? false)
+		viewModel.createFavorite(index: selectItem)
 		moviesCollectionView.reloadData()
 	}
 	

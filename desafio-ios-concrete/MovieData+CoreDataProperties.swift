@@ -16,7 +16,7 @@ extension MovieData {
         return NSFetchRequest<MovieData>(entityName: "MovieData")
     }
 
-    @NSManaged public var genres: [Int]?
+    @NSManaged public var genres: String?
     @NSManaged public var genres_description: String?
     @NSManaged public var isFavorite: Bool
     @NSManaged public var poster: String?

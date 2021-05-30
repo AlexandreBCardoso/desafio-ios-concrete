@@ -12,14 +12,26 @@
         <!--Favorites-->
         <scene sceneID="yAx-fQ-vpx">
             <objects>
-                <viewController id="k9K-vs-jP6" sceneMemberID="viewController">
+                <viewController id="k9K-vs-jP6" customClass="FavoriteViewController" customModule="desafio_ios_concrete" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SaD-MO-Z24">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UA-Ri-I4j">
-                                <rect key="frame" x="0.0" y="140" width="414" height="756"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EKd-1S-Iau">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="717"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="EKd-1S-Iau" secondAttribute="trailing" id="Gn7-BM-q1a"/>
+                                    <constraint firstItem="EKd-1S-Iau" firstAttribute="top" secondItem="5UA-Ri-I4j" secondAttribute="top" id="KW3-CI-6MT"/>
+                                    <constraint firstItem="EKd-1S-Iau" firstAttribute="leading" secondItem="5UA-Ri-I4j" secondAttribute="leading" id="RMR-cr-Suy"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="EKd-1S-Iau" secondAttribute="bottom" id="r3s-fY-OnZ"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="goQ-0L-nDp"/>
@@ -36,18 +48,21 @@
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Favorites" id="Rx9-3n-X5T"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="favoriteTableView" destination="EKd-1S-Iau" id="BtE-hR-hd0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m9d-D4-J1c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1096" y="149"/>
+            <point key="canvasLocation" x="1095.6521739130435" y="148.66071428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0jC-KN-QWa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S5f-Xn-eVx" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ivk-62-OwS">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ivk-62-OwS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="mainColor"/>
                     </navigationBar>
@@ -64,7 +79,7 @@
     <resources>
         <image name="favorite_empty_icon" width="22" height="21"/>
         <namedColor name="mainColor">
-            <color red="0.96862745098039216" green="0.80784313725490198" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96899998188018799" green="0.80800002813339233" blue="0.35699999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
