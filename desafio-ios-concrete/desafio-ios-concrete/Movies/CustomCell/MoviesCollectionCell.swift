@@ -30,23 +30,21 @@ class MoviesCollectionCell: UICollectionViewCell {
 	}
 	
 	func setupCell(model: Movie?) {
-		let favoriteModel = (model?.isFavorite ?? false)
-			? UIImage(named: NameImage.favorite.rawValue)
-			: UIImage(named: NameImage.unfavorite.rawValue)
-		nameLabel.text = model?.title
-		favoriteButton.image = favoriteModel
-//		movieImageView.image = imageMovie(url: model?.poster_url)
-	}
-	
-	private func imageMovie(url: URL?) -> UIImage? {
-		guard let _url = url else { return nil }
 		
-		do {
-			let imageData = try Data(contentsOf: _url)
-			return UIImage(data: imageData)
-		} catch  {
-			return nil
+		if let _model = model {
+			let imageFavorite = _model.isFavorite
+				? UIImage(named: NameImage.favorite.rawValue)
+				: UIImage(named: NameImage.unfavorite.rawValue)
+			
+			nameLabel.text = _model.title
+			favoriteButton.image = imageFavorite
+			
+			let imageUrlString: String = Api_url.imageW500.rawValue.replacingOccurrences(of: "&1", with: _model.poster)
+			movieImageView.image = LoadImage.setImageLoad(urlString: imageUrlString)
+//			movieImageView.image = LoadImage.setImageCache(urlString: imageUrlString)
+			
 		}
+		
 	}
 	
 }

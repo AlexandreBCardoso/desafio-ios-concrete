@@ -20,16 +20,6 @@ struct Movie: Decodable {
 	let release: String
 	
 	var isFavorite: Bool = false
-	var poster_url: URL? {
-		return URL(string: "https://image.tmdb.org/t/p/w200\(poster)")
-	}
-	var release_year: String {
-		let dateFormatter = DateFormatter()
-		let dateYear = DateFormatter()
-		dateFormatter.dateFormat = "yyyy-MM-dd"
-		dateYear.dateFormat = "yyyy"
-		return dateYear.string(from: dateFormatter.date(from: release) ?? Date())
-	}
 	var genres_description: String = ""
 	
 	enum CodingKeys: String, CodingKey {

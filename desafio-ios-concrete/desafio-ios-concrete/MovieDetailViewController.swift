@@ -67,16 +67,23 @@ class MovieDetailViewController: UIViewController {
 	}
 	
 	private func setupMovieDetail() {
-		let favoriteModel = (movieModel?.isFavorite ?? false)
-			? UIImage(named: NameImage.favorite.rawValue)
-			: UIImage(named: NameImage.unfavorite.rawValue)
 		
-		movieImageView.image		= imageMovie(url: movieModel?.poster_url)
-		nameLabel.text 			= movieModel?.title
-		yearLabel.text 			= movieModel?.release_year
-		genreLabel.text 			= movieModel?.genres_description
-		descriptionLabel.text 	= movieModel?.summary
-		favoriteImageView.image	= favoriteModel
+		if let model = movieModel {
+			let favoriteModel = model.isFavorite
+				? UIImage(named: NameImage.favorite.rawValue)
+				: UIImage(named: NameImage.unfavorite.rawValue)
+			let imageUrlString: String = Api_url.imageW500.rawValue.replacingOccurrences(of: "&1",
+																												  with: model.poster)
+			
+			movieImageView.image    = LoadImage.setImageLoad(urlString: imageUrlString)
+			nameLabel.text 			= model.title
+			yearLabel.text				= model.release.dateFormatter()
+			genreLabel.text 			= model.genres_description
+			descriptionLabel.text 	= model.summary
+			favoriteImageView.image	= favoriteModel
+			
+		}
+		
 	}
 	
 	private func imageMovie(url: URL?) -> UIImage? {
