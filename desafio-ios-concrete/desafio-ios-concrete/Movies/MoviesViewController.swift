@@ -93,6 +93,12 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
+		if viewModel.checkErrorNetwork() {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ErrorMovieCollectionViewCell.identifier,
+																		 for: indexPath) as? ErrorMovieCollectionViewCell
+			return cell ?? UICollectionViewCell()
+		}
+		
 		if viewModel.checkNotFound() {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotFoundCollectionViewCell.identifier,
 																		 for: indexPath) as? NotFoundCollectionViewCell
@@ -110,8 +116,8 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		
-		if viewModel.checkNotFound() {
+				
+		if viewModel.checkNotFound() || viewModel.checkErrorNetwork() {
 			return CGSize(width: view.frame.size.width-20, height: view.frame.size.width)
 		}
 		
@@ -147,6 +153,9 @@ extension MoviesViewController: MovieViewModelProtocol {
 	
 	func errorNetwork() {
 		print("==>> Erro API")
+		DispatchQueue.main.async {
+			self.moviesCollectionView.reloadData()
+		}
 	}
 	
 }

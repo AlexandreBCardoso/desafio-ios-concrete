@@ -21,6 +21,7 @@ class MovieViewModel {
 	private let service: NetworkAPI = NetworkAPI()
 	private var isFiltering = false
 	private var isNotFound = false
+	private var isErrorNetwork = false
 	weak var delegate: MovieViewModelProtocol?
 	private let serviceCoreData: NetworkCoreData = NetworkCoreData()
 	private var listFavorite: [Movie] = [Movie]()
@@ -49,6 +50,7 @@ class MovieViewModel {
 		service.getMoviePopular { (movies) in
 			
 			if let _movies = movies {
+				self.isErrorNetwork = false
 				self.movies = _movies
 				
 				for favorite in self.listFavorite {
@@ -62,6 +64,7 @@ class MovieViewModel {
 				self.delegate?.successNetwork()
 			} else {
 				self.delegate?.errorNetwork()
+				self.isErrorNetwork = true
 			}
 		}
 	}
@@ -80,6 +83,10 @@ class MovieViewModel {
 	}
 	
 	func countMovies() -> Int {
+		if isErrorNetwork {
+			return 1
+		}
+		
 		if isFiltering {
 			if isNotFound {
 				return 1
@@ -142,6 +149,10 @@ class MovieViewModel {
 				serviceCoreData.deleteFavorite(model: model)
 			}
 		}
+	}
+	
+	func checkErrorNetwork() -> Bool {
+		return isErrorNetwork
 	}
 	
 }
