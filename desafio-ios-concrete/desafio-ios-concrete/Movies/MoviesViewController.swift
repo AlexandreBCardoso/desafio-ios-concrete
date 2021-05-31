@@ -11,6 +11,8 @@ class MoviesViewController: UIViewController {
 	
 	// MARK: - IBOutlet
 	@IBOutlet weak var moviesCollectionView: UICollectionView!
+	@IBOutlet weak var backActiveView: UIView!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 	
 	
 	// MARK: - Variable
@@ -26,6 +28,8 @@ class MoviesViewController: UIViewController {
 	// MARK: - Life Cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		activityIndicator.startAnimating()
 		
 		setupSearchController()
 		setupCollectionView()
@@ -148,6 +152,8 @@ extension MoviesViewController: MovieViewModelProtocol {
 	func successNetwork() {
 		DispatchQueue.main.async {
 			self.moviesCollectionView.reloadData()
+			self.activityIndicator.stopAnimating()
+			self.backActiveView.isHidden = true
 		}
 	}
 	

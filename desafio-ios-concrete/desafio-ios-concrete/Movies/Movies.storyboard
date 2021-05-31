@@ -28,20 +28,43 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <view contentMode="scaleToFill" id="oou-2K-XX8">
+                                <rect key="frame" x="0.0" y="85" width="414" height="725"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="KSX-t5-xAg">
+                                        <rect key="frame" x="50" y="50" width="314" height="625"/>
+                                        <color key="color" name="mainColor"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.6611541955649447" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="KSX-t5-xAg" firstAttribute="leading" secondItem="oou-2K-XX8" secondAttribute="leading" constant="50" id="39W-JH-lUI"/>
+                                    <constraint firstAttribute="trailing" secondItem="KSX-t5-xAg" secondAttribute="trailing" constant="50" id="P0g-9m-cMr"/>
+                                    <constraint firstItem="KSX-t5-xAg" firstAttribute="top" secondItem="oou-2K-XX8" secondAttribute="top" constant="50" id="SFl-x4-xbz"/>
+                                    <constraint firstAttribute="bottom" secondItem="KSX-t5-xAg" secondAttribute="bottom" constant="50" id="hW0-US-3b4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t6l-Us-Jyz"/>
                         <color key="backgroundColor" name="mainColor"/>
                         <constraints>
+                            <constraint firstItem="oou-2K-XX8" firstAttribute="trailing" secondItem="bGx-k9-RWj" secondAttribute="trailing" id="21X-tH-1hD"/>
                             <constraint firstItem="bGx-k9-RWj" firstAttribute="top" secondItem="t6l-Us-Jyz" secondAttribute="top" id="5bY-KL-O9x"/>
+                            <constraint firstItem="oou-2K-XX8" firstAttribute="top" secondItem="bGx-k9-RWj" secondAttribute="top" id="IoZ-pT-9Hx"/>
                             <constraint firstItem="t6l-Us-Jyz" firstAttribute="bottom" secondItem="bGx-k9-RWj" secondAttribute="bottom" id="ML5-hj-KHX"/>
+                            <constraint firstItem="oou-2K-XX8" firstAttribute="leading" secondItem="bGx-k9-RWj" secondAttribute="leading" id="TX6-9r-BNT"/>
                             <constraint firstItem="t6l-Us-Jyz" firstAttribute="trailing" secondItem="bGx-k9-RWj" secondAttribute="trailing" id="dZj-5Q-9v8"/>
                             <constraint firstItem="bGx-k9-RWj" firstAttribute="leading" secondItem="t6l-Us-Jyz" secondAttribute="leading" id="dbR-Rf-J3K"/>
+                            <constraint firstItem="oou-2K-XX8" firstAttribute="bottom" secondItem="bGx-k9-RWj" secondAttribute="bottom" id="jKV-ZK-iRG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="list_icon" id="Ouw-Xd-Bpo"/>
                     <navigationItem key="navigationItem" title="Movies" id="nRz-NZ-pLT"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="KSX-t5-xAg" id="2Wx-zh-GQB"/>
+                        <outlet property="backActiveView" destination="oou-2K-XX8" id="Q78-yS-47h"/>
                         <outlet property="moviesCollectionView" destination="bGx-k9-RWj" id="WNk-bM-imc"/>
                         <segue destination="uiv-S1-KZ0" kind="show" identifier="movieDetail" id="y72-7Z-DlI"/>
                     </connections>
