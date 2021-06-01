@@ -13,11 +13,6 @@ class FavoriteViewController: UIViewController {
 	@IBOutlet weak var favoriteTableView: UITableView!
 	
 	// MARK: - Variable
-	lazy var searchController: UISearchController = {
-		let search = UISearchController(searchResultsController: nil)
-		search.searchBar.placeholder = "Search"
-		return search
-	}()
 	private let viewModel: FavoriteViewModel = FavoriteViewModel()
 	
 	
@@ -25,7 +20,6 @@ class FavoriteViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		setupSearchControllher()
 		setupTableView()
 	}
 	
@@ -36,13 +30,6 @@ class FavoriteViewController: UIViewController {
 	
 	
 	// MARK: - Function
-	private func setupSearchControllher() {
-		navigationItem.searchController = searchController
-//		searchController.searchResultsUpdater = self
-//		searchController.obscuresBackgroundDuringPresentation = false
-//		definesPresentationContext = true
-	}
-	
 	private func setupTableView() {
 		favoriteTableView.dataSource = self
 		favoriteTableView.delegate = self

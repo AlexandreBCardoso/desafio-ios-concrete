@@ -86,15 +86,4 @@ class MovieDetailViewController: UIViewController {
 		
 	}
 	
-	private func imageMovie(url: URL?) -> UIImage? {
-		guard let _url = url else { return nil }
-		
-		do {
-			let imageData = try Data(contentsOf: _url)
-			return UIImage(data: imageData)
-		} catch  {
-			return nil
-		}
-	}
-	
 }
