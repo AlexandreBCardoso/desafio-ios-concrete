@@ -22,7 +22,6 @@ class MoviesViewController: UIViewController {
 		return search
 	}()
 	private let viewModel: MovieViewModel = MovieViewModel()
-	private var selectItem: Int = 0
 		
 	
 	// MARK: - Life Cycle
@@ -139,7 +138,6 @@ extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDele
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let movie = viewModel.getMovie(indexPath: indexPath)
-		selectItem = indexPath.row
 		performSegue(withIdentifier: Segue.detail.rawValue, sender: movie)
 	}
 		
@@ -158,7 +156,6 @@ extension MoviesViewController: MovieViewModelProtocol {
 	}
 	
 	func errorNetwork() {
-		print("==>> Erro API")
 		DispatchQueue.main.async {
 			self.moviesCollectionView.reloadData()
 		}
@@ -171,7 +168,8 @@ extension MoviesViewController: MovieViewModelProtocol {
 extension MoviesViewController: MovieDetailViewControllerProtocol {
 	
 	func updateModel(_ model: Movie) {
-		viewModel.createFavorite(index: selectItem, model: model)
+		viewModel.createFavorite(model: model)
+		viewModel.updateMovieFavorite(model: model)
 		moviesCollectionView.reloadData()
 	}
 	

@@ -141,14 +141,31 @@ class MovieViewModel {
 		
 	}
 	
-	func createFavorite(index: Int, model: Movie) {
-		if let movie = movies?.results[index] {
+	func updateMovieFavorite(model: Movie) {
+		let updateMovies = movies?.results.map({ (movie) -> Movie in
+			if movie.title.lowercased() == model.title.lowercased() {
+				return model
+			}
+			return movie
+		})
+		
+		if let _updateMovies = updateMovies {
+			self.movies?.results = _updateMovies
+		}
+		
+	}
+	
+	func createFavorite(model: Movie) {
+		let movieUpdate = movies?.results.filter({$0.title.lowercased() == model.title.lowercased()})
+		
+		if let movie = movieUpdate?.first {
 			if model.isFavorite && !movie.isFavorite {
 				serviceCoreData.createFavorite(model: model)
 			} else if !model.isFavorite && movie.isFavorite {
 				serviceCoreData.deleteFavorite(model: model)
 			}
 		}
+		
 	}
 	
 	func checkErrorNetwork() -> Bool {
