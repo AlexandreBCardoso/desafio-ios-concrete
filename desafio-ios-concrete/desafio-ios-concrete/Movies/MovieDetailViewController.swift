@@ -75,7 +75,7 @@ class MovieDetailViewController: UIViewController {
 			let imageUrlString: String = Api_url.imageW500.rawValue.replacingOccurrences(of: "&1",
 																												  with: model.poster)
 			
-			movieImageView.image    = LoadImage.setImageLoad(urlString: imageUrlString)
+			movieImageView.image    = Utils.setImageLoad(urlString: imageUrlString)
 			nameLabel.text 			= model.title
 			yearLabel.text				= model.release.dateFormatter()
 			genreLabel.text 			= model.genres_description

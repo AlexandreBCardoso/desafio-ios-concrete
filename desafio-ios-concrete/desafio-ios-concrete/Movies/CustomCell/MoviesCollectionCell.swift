@@ -38,11 +38,8 @@ class MoviesCollectionCell: UICollectionViewCell {
 			
 			nameLabel.text = _model.title
 			favoriteButton.image = imageFavorite
-			
 			let imageUrlString: String = Api_url.imageW500.rawValue.replacingOccurrences(of: "&1", with: _model.poster)
-			movieImageView.image = LoadImage.setImageLoad(urlString: imageUrlString)
-//			movieImageView.image = LoadImage.setImageCache(urlString: imageUrlString)
-			
+			movieImageView.image = Utils.setImageLoad(urlString: imageUrlString)
 		}
 		
 	}

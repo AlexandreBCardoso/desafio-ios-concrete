@@ -32,7 +32,7 @@ class FavoriteTableViewCell: UITableViewCell {
 	
 	func setupCell(model: Movie) {
 		let urlImage = Api_url.imageW500.rawValue.replacingOccurrences(of: "&1", with: model.poster)
-		movieImageView.image = LoadImage.setImageLoad(urlString: urlImage)
+		movieImageView.image = Utils.setImageLoad(urlString: urlImage)
 		nameLabel.text = model.title
 		yearLabel.text = model.release.dateFormatter()
 		descriptionLabel.text = model.summary
