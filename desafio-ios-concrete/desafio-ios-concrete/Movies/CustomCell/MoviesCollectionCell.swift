@@ -29,6 +29,11 @@ class MoviesCollectionCell: UICollectionViewCell {
 		return UINib(nibName: identifier, bundle: nil)
 	}
 	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		movieImageView.image = nil
+	}
+	
 	func setupCell(model: Movie?) {
 		
 		if let _model = model {

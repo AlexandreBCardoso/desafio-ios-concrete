@@ -24,6 +24,11 @@ class FavoriteTableViewCell: UITableViewCell {
 		super.awakeFromNib()
 	}
 	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		movieImageView.image = nil
+	}
+	
 	
 	// MARK: - Function
 	static func nib() -> UINib {
